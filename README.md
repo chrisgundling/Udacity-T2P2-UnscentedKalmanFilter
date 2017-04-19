@@ -77,3 +77,5 @@ A simulator was also provided and the final results from the simulator are shown
 
 ## Notes on Code Efficiency
 The script that performs most of the calculations for this project is `ukf.cpp`. Inside of `ukf.cpp` the `ProcessMeasurement()` function takes the UKF through the intialization, prediction, laser update and radar update steps by calling the appropriate functions. In each of the prediction and update functions I tried to keep things as simple and readable as possible. There were also several instances where the matrix calculations could be vectorized rather than performing loops.
+
+One more note about the `ukf.cpp` script is that for dataset2 I needed to reduce the maximum timestep (dt) seen in the measurements. With the large timestep I was getting endlessly stuck within one of the loops in the prediction function due to the large change in timestep between measurements. Sub-dividing the largest timesteps solved this issue. 
