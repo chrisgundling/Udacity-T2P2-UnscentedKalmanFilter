@@ -26,9 +26,11 @@ Two differerent pedestrian tracking datasets were provided for this project that
 ## Sensitivity Analysis
 The key parameters that were used to tune the UKF to achieve more accurate results wer the process measurement uncertainties. The process noise variables `std_a_` and `std_yawdd_` were adjusted as can be seen in the following table to achieve the lowest average RMSE for both position and velocity on the two datasets.
 
-<img src="images/RMSE_sensitivity.png" width="300">
+<img src="images/RMSE_sensitivity.png" width="500">
 
 ### Results Dataset 1 - Pedestrian Path Follows a Figure Eight
+The following shows the RMSE predictions. Below plots of the UKF tracking are shown along with the NIS for each Laser and Radar update step. In the NIS plot, the percent of the Laser and Radar measurements below the 95% probability curves are shown. The NIS 95% probabilities are different for the Laser and Radar measurements due to the different in degrees of freedom (2 versus 3).
+
 ```
 Extended Kalman Filter Accuracy - RMSE: 
 0.0652
@@ -46,7 +48,9 @@ Unscented Kalman Filter Accuracy - RMSE:
 <img src="images/Tracking_dataset1.png" width="300">
 <img src="images/NIS_dataset1.png" width="300">
 
-### Dataset 2 - Path follows an S-curve
+### Results Dataset 2 - Pedestrian Path Follows an S-curve
+The following shows the RMSE predictions. Below plots of the UKF tracking are shown along with the NIS for each Laser and Radar update step. In the NIS plot, the percent of the Laser and Radar measurements below the 95% probability curves are shown. The NIS 95% probabilities are different for the Laser and Radar measurements due to the different in degrees of freedom (2 versus 3).
+
 ```
 Extended Kalman Filter Accuracy - RMSE:
 0.1855
@@ -55,10 +59,10 @@ Extended Kalman Filter Accuracy - RMSE:
 0.8108
 
 Unscented Kalman Filter Accuracy - RMSE:
-0.161471
-0.184357
-0.250147
-0.345177
+0.1615
+0.1844
+0.2501
+0.3452
 ```
 
 <img src="images/Tracking_dataset2.png" width="300">
@@ -67,4 +71,4 @@ Unscented Kalman Filter Accuracy - RMSE:
 ## Simulation
 A simulator was also provided and the final results from the simulator are shown in the figure below. Both Lidar (Kalman Filter) and Radar (Extended Kalman Filter) were used to track the vehicle through its path. 
 
-<img src="output_images/SimulatorResults.png" width="500">
+<img src="images/UKF-Simulator.png" width="500">
