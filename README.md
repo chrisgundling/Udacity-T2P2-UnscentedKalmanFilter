@@ -24,12 +24,12 @@ Self-Driving Car Engineer Nanodegree Program
 Two differerent pedestrian tracking datasets were provided for this project that included Laser and Radar measurements. The goal was to create a Unscented Kalman Filter to make preditions of the pedestrian position using the CTRV motion model and then to fuse the data from the Laser and Radar measurements to make updates to the postion. The tracking path of the filter, the RMSE compared to the ground truth and the NIS consistency are shown for both cases in the following sections. I created a Matlab script (`./data/PlottingTool_UKF3.m`) to visualize the results. The results show a general improvement in both position and velocity over the Extended Kalman Filter that was implemented in the previous project. 
 
 ## Sensitivity Analysis
-The key parameters that were used to tune the UKF to achieve more accurate results wer the process measurement uncertainties. The process noise variables `std_a_` and `std_yawdd_` were adjusted as can be seen in the following table to achieve the lowest average RMSE for both position and velocity on the two datasets.
+The key parameters that were used to tune the UKF to achieve more accurate results wer the process measurement uncertainties (noise). The process noise variables `std_a_` and `std_yawdd_` were adjusted as can be seen in the following table to achieve the lowest average RMSE for both position and velocity on the two datasets. It was surprising that such a low value of `std_a_` ended up working the best for these datasets. For these datasets it was more important to have smooth estimations than estimations that could change quickly.
 
 <img src="images/RMSE_sensitivity.png" width="600">
 
 ### Results Dataset 1 - Pedestrian Path Follows a Figure Eight
-The following shows the RMSE predictions. Below plots of the UKF tracking are shown along with the NIS for each Laser and Radar update step. In the NIS plot, the percent of the Laser and Radar measurements below the 95% probability curves are shown. The NIS 95% probabilities are different for the Laser and Radar measurements due to the different in degrees of freedom (2 versus 3).
+The following shows the RMSE predictions. Below plots of the UKF tracking are shown along with the NIS for each Laser and Radar update step. In the NIS plot, the percent of the Laser and Radar measurements below the 95% probability curves are shown. The NIS 95% probabilities are different for the Laser and Radar measurements due to the different in degrees of freedom (2 versus 3). The NIS plot shows that the uncertainty in the Rader measurements is somewhat underestimated (more data points than expected falling outside of the 95% probability line), while the uncertainty for the Laser measurements is over-estimated (fewer data points than expected falling outside of the 95% probability line). This could be further tuned, but the NIS for the second dataset also had to be considered. 
 
 ```
 Extended Kalman Filter Accuracy - RMSE: 
@@ -50,7 +50,7 @@ Unscented Kalman Filter Accuracy - RMSE:
 <img src="images/NIS_dataset1.png" width="600">
 
 ### Results Dataset 2 - Pedestrian Path Follows an S-curve
-The following shows the RMSE predictions. Below plots of the UKF tracking are shown along with the NIS for each Laser and Radar update step. In the NIS plot, the percent of the Laser and Radar measurements below the 95% probability curves are shown. The NIS 95% probabilities are different for the Laser and Radar measurements due to the different in degrees of freedom (2 versus 3).
+The following shows the RMSE predictions. Below plots of the UKF tracking are shown along with the NIS for each Laser and Radar update step. In the NIS plot, the percent of the Laser and Radar measurements below the 95% probability curves are shown. The NIS consistency looks very good for both the 
 
 ```
 Extended Kalman Filter Accuracy - RMSE:
