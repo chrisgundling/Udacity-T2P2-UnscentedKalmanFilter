@@ -50,7 +50,7 @@ Unscented Kalman Filter Accuracy - RMSE:
 <img src="images/NIS_dataset1.png" width="600">
 
 ### Results Dataset 2 - Pedestrian Path Follows an S-curve
-The following shows the RMSE predictions. Below plots of the UKF tracking are shown along with the NIS for each Laser and Radar update step. In the NIS plot, the percent of the Laser and Radar measurements below the 95% probability curves are shown. The NIS consistency looks very good for both the 
+The following shows the RMSE predictions. Below plots of the UKF tracking are shown along with the NIS for each Laser and Radar update step. In the NIS plot, the percent of the Laser and Radar measurements below the 95% probability curves are shown. For this dataset, the NIS consistency looks good for the Laser measurements. For the Radar measurements the uncertainty is slightly overestimated as nearly all the points fall under the 95% confidence line.
 
 ```
 Extended Kalman Filter Accuracy - RMSE:
