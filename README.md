@@ -76,4 +76,4 @@ A simulator was also provided and the final results from the simulator are shown
 <img src="images/UKF-Simulator.png" width="500">
 
 ## Notes on Code Efficiency
-The script that performs most of the calculations for this project is `ukf.cpp`. Inside of `ukf.cpp` the `ProcessMeasurement()` function takes the UKF through the intialization, prediction, laser update and radar update steps by calling the appropriate functions. In each of the prediction and update functions I tried to keep things as simple and readable as possible and used vectorization rather than loops in several locations. 
+The script that performs most of the calculations for this project is `ukf.cpp`. Inside of `ukf.cpp` the `ProcessMeasurement()` function takes the UKF through the intialization, prediction, laser update and radar update steps by calling the appropriate functions. In each of the prediction and update functions I tried to keep things as simple and readable as possible. There were also several instances where the matrix calculations could be vectorized rather than performing loops.
