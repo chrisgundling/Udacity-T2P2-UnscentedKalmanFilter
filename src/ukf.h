@@ -13,9 +13,23 @@ using Eigen::VectorXd;
 
 class UKF {
 public:
+	
+  //************************************************************************ 
+  ///* measurements
+  float ro_in;
+  float phi_in;
+  float ro_dot_in;
+
+  ///* tool object used to compute RMSE
+  Tools tools;
+	
+  //*************************************************************************
 
   ///* initially set to false, set to true in first call of ProcessMeasurement
   bool is_initialized_;
+
+  ///* previous timestamp
+  long previous_timestamp_;
 
   ///* if this is false, laser measurements will be ignored (except for init)
   bool use_laser_;
@@ -23,12 +37,24 @@ public:
   ///* if this is false, radar measurements will be ignored (except for init)
   bool use_radar_;
 
+  ///* State dimension
+  int n_x_;
+
+  ///* Augmented state dimension
+  int n_aug_;
+
   ///* state vector: [pos1 pos2 vel_abs yaw_angle yaw_rate] in SI units and rad
   VectorXd x_;
+
+  ///* aug state vector: [pos1 pos2 vel_abs yaw_angle yaw_rate nu psi] in SI units and rad
+  VectorXd x_aug_;
 
   ///* state covariance matrix
   MatrixXd P_;
 
+  ///* aug state covariance matrix
+  MatrixXd P_aug_;
+  
   ///* predicted sigma points matrix
   MatrixXd Xsig_pred_;
 
@@ -58,12 +84,6 @@ public:
 
   ///* Weights of sigma points
   VectorXd weights_;
-
-  ///* State dimension
-  int n_x_;
-
-  ///* Augmented state dimension
-  int n_aug_;
 
   ///* Sigma point spreading parameter
   double lambda_;
@@ -102,12 +122,15 @@ public:
    * @param meas_package The measurement at k+1
    */
   void UpdateLidar(MeasurementPackage meas_package);
+  //void UpdateLidar(const Eigen::VectorXd &z);
 
   /**
    * Updates the state and the state covariance matrix using a radar measurement
    * @param meas_package The measurement at k+1
    */
   void UpdateRadar(MeasurementPackage meas_package);
+  //void UpdateRadar(const Eigen::VectorXd &z);
+	
 };
 
 #endif /* UKF_H */
